@@ -1,7 +1,9 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.Stone;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -32,6 +34,12 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		batch = new SpriteBatch();
 		gameObjects.add(new Sign());
+		Bush bush = new Bush();
+		bush.setPosition(30, 0);
+		Stone stone = new Stone();
+		stone.setPosition(60, 0);
+		gameObjects.add(stone);
+		gameObjects.add(bush);
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
