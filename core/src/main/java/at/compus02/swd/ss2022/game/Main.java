@@ -37,7 +37,7 @@ public class Main extends ApplicationAdapter {
 		Bush bush = new Bush();
 		bush.setPosition(30, 0);
 		Stone stone = new Stone();
-		stone.setPosition(60, 0);
+		stone.setPosition(-30, 0);
 		gameObjects.add(stone);
 		gameObjects.add(bush);
 		font = new BitmapFont();
