@@ -4,6 +4,8 @@ import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
 import at.compus02.swd.ss2022.game.gameobjects.Stone;
+import at.compus02.swd.ss2022.game.groundObject.Gravel;
+import at.compus02.swd.ss2022.game.groundObject.GroundObject;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -24,6 +26,7 @@ public class Main extends ApplicationAdapter {
 	private GameInput gameInput = new GameInput();
 
 	private Array<GameObject> gameObjects = new Array<>();
+	private Array<GroundObject> groundObjects = new Array<>();
 
 	private final float updatesPerSecond = 60;
 	private final float logicFrameTime = 1 / updatesPerSecond;
@@ -33,6 +36,10 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+		Gravel gravel = new Gravel();
+		gravel.setPosition(-240,240-gravel.getSize());
+		groundObjects.add(gravel);
+
 		gameObjects.add(new Sign());
 		Bush bush = new Bush();
 		bush.setPosition(30, 0);
@@ -43,6 +50,7 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
+
 	}
 
 	private void act(float delta) {
@@ -56,6 +64,9 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
 		for(GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
+		}
+		for(GroundObject groundObject : groundObjects){
+			groundObject.draw(batch);
 		}
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
