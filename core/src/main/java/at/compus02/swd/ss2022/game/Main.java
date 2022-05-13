@@ -4,29 +4,30 @@ import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
 import at.compus02.swd.ss2022.game.gameobjects.Stone;
-import at.compus02.swd.ss2022.game.groundObject.Gravel;
-import at.compus02.swd.ss2022.game.groundObject.GroundObject;
+import at.compus02.swd.ss2022.game.groundObject.BackgroundFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
-	private SpriteBatch batch;
+
 
 	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
 	private GameInput gameInput = new GameInput();
 
 	private Array<GameObject> gameObjects = new Array<>();
-	private Array<GroundObject> groundObjects = new Array<>();
+
+	SpriteBatch batchforground;
+	SpriteBatch batchbackground;
+	BackgroundFactory backgroundFactory;
+
 
 	private final float updatesPerSecond = 60;
 	private final float logicFrameTime = 1 / updatesPerSecond;
@@ -35,11 +36,9 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-		Gravel gravel = new Gravel();
-		gravel.setPosition(-240,240-gravel.getSize());
-		groundObjects.add(gravel);
-
+		backgroundFactory = new BackgroundFactory();
+		batchforground = new SpriteBatch();
+		batchbackground = new SpriteBatch();
 		gameObjects.add(new Sign());
 		Bush bush = new Bush();
 		bush.setPosition(30, 0);
@@ -57,19 +56,21 @@ public class Main extends ApplicationAdapter {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
+
 	}
 
 	private void draw() {
-		batch.setProjectionMatrix(viewport.getCamera().combined);
-		batch.begin();
+		batchforground.setProjectionMatrix(viewport.getCamera().combined);
+		batchforground.begin();
 		for(GameObject gameObject : gameObjects) {
-			gameObject.draw(batch);
+			gameObject.draw(batchforground);
 		}
-		for(GroundObject groundObject : groundObjects){
-			groundObject.draw(batch);
-		}
-		font.draw(batch, "Hello Game", -220, -220);
-		batch.end();
+
+		backgroundFactory.createObjects();
+		backgroundFactory.placeBackground(batchforground);
+
+		font.draw(batchforground, "Hello Game", -220, -220);
+		batchforground.end();
 	}
 
 	@Override
@@ -88,7 +89,9 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
-		batch.dispose();
+
+		batchforground.dispose();
+		batchbackground.dispose();
 	}
 
 	@Override

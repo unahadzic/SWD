@@ -1,10 +1,11 @@
 package at.compus02.swd.ss2022.game.groundObject;
 
+import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Gras implements GroundObject
+public class Gras implements GameObject
 {
 
     private Texture image;
@@ -21,6 +22,12 @@ public class Gras implements GroundObject
         image = new Texture("tile_gras.png");
         sprite = new Sprite(image);
     }
+
+    @Override
+    public void act(float delta) {
+
+    }
+
     @Override
     public void setPosition(float x, float y)
     {
