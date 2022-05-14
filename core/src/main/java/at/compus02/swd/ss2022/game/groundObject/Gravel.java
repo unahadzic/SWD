@@ -10,12 +10,7 @@ public class Gravel implements GameObject
     private Texture image;
     private Sprite sprite;
 
-    public int getSize()
-    {
-        return size;
-    }
 
-    private int size = 60;
 
     public Gravel() {
         image = new Texture("tile_gravel.png");
@@ -34,7 +29,7 @@ public class Gravel implements GameObject
 
     @Override
     public void draw(SpriteBatch batch) {
-        sprite.setSize(size,size);
+        sprite.setSize(backgroundElement, backgroundElement);
         sprite.draw(batch);
     }
 }

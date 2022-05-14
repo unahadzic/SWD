@@ -1,37 +1,33 @@
-package at.compus02.swd.ss2022.game.groundObject;
+package at.compus02.swd.ss2022.game.DoraTheExplorer;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Gras implements GameObject
+public class Dora implements GameObject
 {
-
     private Texture image;
     private Sprite sprite;
 
-    public Gras() {
-        image = new Texture("tile_gras.png");
+    public Dora() {
+        image = new Texture("dora.png");
         sprite = new Sprite(image);
     }
-
     @Override
     public void act(float delta) {
+        sprite.setPosition(sprite.getX()+delta,sprite.getY()+delta);
 
     }
 
     @Override
-    public void setPosition(float x, float y)
-    {
+    public void setPosition(float x, float y) {
         sprite.setPosition(x, y);
     }
 
     @Override
-    public void draw(SpriteBatch batch)
-    {
-        sprite.setSize(backgroundElement, backgroundElement);
+    public void draw(SpriteBatch batch) {
+        sprite.setSize(foregroundElement, foregroundElement);
         sprite.draw(batch);
     }
-
 }

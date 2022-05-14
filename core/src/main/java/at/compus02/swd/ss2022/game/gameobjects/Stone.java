@@ -9,6 +9,7 @@ public class Stone implements GameObject
     private Texture image;
     private Sprite sprite;
 
+
     public Stone() {
         image = new Texture("stone.png");
         sprite = new Sprite(image);
@@ -25,6 +26,7 @@ public class Stone implements GameObject
 
     @Override
     public void draw(SpriteBatch batch) {
+        sprite.setSize(foregroundElement, foregroundElement);
         sprite.draw(batch);
     }
 }

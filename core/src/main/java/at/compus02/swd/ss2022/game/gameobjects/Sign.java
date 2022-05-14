@@ -24,6 +24,8 @@ public class Sign implements GameObject {
 
     @Override
     public void draw(SpriteBatch batch) {
+        sprite.setSize(foregroundElement, foregroundElement);
         sprite.draw(batch);
+
     }
 }

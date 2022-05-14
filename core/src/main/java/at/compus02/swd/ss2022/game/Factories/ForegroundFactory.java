@@ -28,10 +28,10 @@ public class ForegroundFactory
     public void placeForeground()
     {
         System.out.println(foregroundObjects.size);
-        foregroundObjects.get(0).setPosition(30, 30);
+        foregroundObjects.get(0).setPosition(60, 60);
         foregroundObjects.get(1).setPosition(180, -60);
         foregroundObjects.get(2).setPosition(-240, 120);
-        foregroundObjects.get(3).setPosition(-120, 180);
+        foregroundObjects.get(3).setPosition(-60, 180);
 
     }
 

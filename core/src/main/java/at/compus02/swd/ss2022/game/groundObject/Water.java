@@ -11,12 +11,7 @@ public class Water implements GameObject
     private Texture image;
     private Sprite sprite;
 
-    public int getSize()
-    {
-        return size;
-    }
 
-    private int size = 60;
 
     public Water() {
         image = new Texture("tile_water.png");
@@ -37,7 +32,7 @@ public class Water implements GameObject
     @Override
     public void draw(SpriteBatch batch)
     {
-        sprite.setSize(size,size);
+        sprite.setSize(backgroundElement, backgroundElement);
         sprite.draw(batch);
     }
 }

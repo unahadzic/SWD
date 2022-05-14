@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
 import at.compus02.swd.ss2022.game.Factories.ForegroundFactory;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
@@ -21,6 +22,7 @@ public class Main extends ApplicationAdapter {
 
     private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
     private GameInput gameInput = new GameInput();
+    Dora dora;
 
     private Array<GameObject> gameObjects = new Array<>();
 
@@ -45,24 +47,25 @@ public class Main extends ApplicationAdapter {
         font = new BitmapFont();
         font.setColor(Color.WHITE);
 
+       dora = new Dora();
+
         Gdx.input.setInputProcessor(this.gameInput);
 
         foregroundFactory.createForegroundObjects();
-        foregroundFactory.getForegroundObjects();
+        foregroundFactory.placeForeground();
 
         backgroundFactory.createObjects();
         backgroundFactory.placeBackground();
 
         gameObjects.addAll(backgroundFactory.getGroundObjects());
         gameObjects.addAll(foregroundFactory.getForegroundObjects());
+        gameObjects.add(dora);
 
 
     }
 
     private void act(float delta) {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.act(delta);
-        }
+        dora.act(0);
 
     }
 
