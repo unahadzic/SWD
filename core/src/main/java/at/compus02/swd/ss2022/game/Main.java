@@ -1,10 +1,8 @@
 package at.compus02.swd.ss2022.game;
 
-import at.compus02.swd.ss2022.game.gameobjects.Bush;
+import at.compus02.swd.ss2022.game.Factories.ForegroundFactory;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.Sign;
-import at.compus02.swd.ss2022.game.gameobjects.Stone;
-import at.compus02.swd.ss2022.game.groundObject.BackgroundFactory;
+import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -29,6 +27,7 @@ public class Main extends ApplicationAdapter {
     SpriteBatch batchforground;
 
     BackgroundFactory backgroundFactory;
+    ForegroundFactory foregroundFactory;
 
 
     private final float updatesPerSecond = 60;
@@ -38,21 +37,25 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        backgroundFactory = new BackgroundFactory();
-        batchforground = new SpriteBatch();
 
-        gameObjects.add(new Sign());
-        Bush bush = new Bush();
-        bush.setPosition(30, 0);
-        Stone stone = new Stone();
-        stone.setPosition(-30, 0);
-        gameObjects.add(stone);
-        gameObjects.add(bush);
+        batchforground = new SpriteBatch();
+        backgroundFactory = new BackgroundFactory();
+        foregroundFactory = new ForegroundFactory();
+
         font = new BitmapFont();
         font.setColor(Color.WHITE);
+
         Gdx.input.setInputProcessor(this.gameInput);
+
+        foregroundFactory.createForegroundObjects();
+        foregroundFactory.getForegroundObjects();
+
         backgroundFactory.createObjects();
-        gameObjects.addAll(backgroundFactory.placeBackground());
+        backgroundFactory.placeBackground();
+
+        gameObjects.addAll(backgroundFactory.getGroundObjects());
+        gameObjects.addAll(foregroundFactory.getForegroundObjects());
+
 
     }
 
@@ -66,9 +69,11 @@ public class Main extends ApplicationAdapter {
     private void draw() {
         batchforground.setProjectionMatrix(viewport.getCamera().combined);
         batchforground.begin();
+
         for (GameObject gameObject : gameObjects) {
             gameObject.draw(batchforground);
         }
+
         font.draw(batchforground, "Hello Game", -220, -220);
         batchforground.end();
 

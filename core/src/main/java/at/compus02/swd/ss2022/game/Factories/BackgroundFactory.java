@@ -1,6 +1,10 @@
-package at.compus02.swd.ss2022.game.groundObject;
+package at.compus02.swd.ss2022.game.Factories;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.groundObject.Gras;
+import at.compus02.swd.ss2022.game.groundObject.Gravel;
+import at.compus02.swd.ss2022.game.groundObject.Wall;
+import at.compus02.swd.ss2022.game.groundObject.Water;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -11,26 +15,31 @@ public class BackgroundFactory {
 
     private Array<GameObject> groundObjects;
 
-    int backgrounditems = 63; // Anzahl der items
+    int backgrounditems = 64; // Anzahl der items
     int differenttypes = 4; // Hintergrund Elemente
     private float ycoordinate = -240;
     private float xcoordinate = -300;
     private int tilesamountx = 8;
 
+    public Array<GameObject> getGroundObjects() {
+        return groundObjects;
+    }
+
     public void createObjects() {
         groundObjects = new Array<>();
 
 
-        for (int i = 0; i <= backgrounditems; i = i + differenttypes) {
+        for (int i = 0; i < backgrounditems; i = i + differenttypes) {
+
+
             groundObjects.add(new Gravel());
             groundObjects.add(new Gras());
             groundObjects.add(new Wall());
             groundObjects.add(new Water());
-
         }
 
-
     }
+
 
     public Array<GameObject> placeBackground() {
         System.out.println(groundObjects.size);
