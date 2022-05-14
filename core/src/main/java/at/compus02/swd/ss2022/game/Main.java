@@ -25,7 +25,7 @@ public class Main extends ApplicationAdapter {
 	private Array<GameObject> gameObjects = new Array<>();
 
 	SpriteBatch batchforground;
-	SpriteBatch batchbackground;
+
 	BackgroundFactory backgroundFactory;
 
 
@@ -38,7 +38,7 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		backgroundFactory = new BackgroundFactory();
 		batchforground = new SpriteBatch();
-		batchbackground = new SpriteBatch();
+
 		gameObjects.add(new Sign());
 		Bush bush = new Bush();
 		bush.setPosition(30, 0);
@@ -49,6 +49,8 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
+		backgroundFactory.createObjects();
+		gameObjects.addAll(backgroundFactory.placeBackground());
 
 	}
 
@@ -65,12 +67,9 @@ public class Main extends ApplicationAdapter {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.draw(batchforground);
 		}
-
-		backgroundFactory.createObjects();
-		backgroundFactory.placeBackground(batchforground);
-
 		font.draw(batchforground, "Hello Game", -220, -220);
 		batchforground.end();
+
 	}
 
 	@Override
@@ -91,7 +90,6 @@ public class Main extends ApplicationAdapter {
 	public void dispose() {
 
 		batchforground.dispose();
-		batchbackground.dispose();
 	}
 
 	@Override
