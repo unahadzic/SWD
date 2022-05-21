@@ -16,7 +16,7 @@ public class Dora implements GameObject
     }
     @Override
     public void act(float delta) {
-        sprite.setPosition(sprite.getX()+delta,sprite.getY()+delta);
+        sprite.setPosition(sprite.getX(),sprite.getY());
 
     }
 

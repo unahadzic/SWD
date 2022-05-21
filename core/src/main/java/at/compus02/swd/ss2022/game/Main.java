@@ -7,6 +7,7 @@ import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -57,6 +58,7 @@ public class Main extends ApplicationAdapter {
         backgroundFactory.createObjects();
         backgroundFactory.placeBackground();
 
+
         gameObjects.addAll(backgroundFactory.getGroundObjects());
         gameObjects.addAll(foregroundFactory.getForegroundObjects());
         gameObjects.add(dora);
@@ -65,7 +67,7 @@ public class Main extends ApplicationAdapter {
     }
 
     private void act(float delta) {
-        dora.act(0);
+
 
     }
 

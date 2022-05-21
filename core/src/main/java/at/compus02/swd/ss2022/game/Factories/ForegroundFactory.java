@@ -1,11 +1,6 @@
 package at.compus02.swd.ss2022.game.Factories;
 
 import at.compus02.swd.ss2022.game.gameobjects.*;
-import at.compus02.swd.ss2022.game.groundObject.Gras;
-import at.compus02.swd.ss2022.game.groundObject.Gravel;
-import at.compus02.swd.ss2022.game.groundObject.Wall;
-import at.compus02.swd.ss2022.game.groundObject.Water;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.Array;
 
 public class ForegroundFactory
@@ -17,10 +12,10 @@ public class ForegroundFactory
     {
         foregroundObjects = new Array<>();
 
-        foregroundObjects.add(new Bush());
-        foregroundObjects.add(new Log());
-        foregroundObjects.add(new Sign());
-        foregroundObjects.add(new Stone());
+        foregroundObjects.add(new InteractiveObject(1));
+        foregroundObjects.add(new InteractiveObject(2));
+        foregroundObjects.add(new InteractiveObject(3));
+        foregroundObjects.add(new InteractiveObject(4));
 
     }
 
