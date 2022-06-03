@@ -2,6 +2,10 @@ package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
 import at.compus02.swd.ss2022.game.Factories.ForegroundFactory;
+import at.compus02.swd.ss2022.game.commands.CommandDown;
+import at.compus02.swd.ss2022.game.commands.CommandLeft;
+import at.compus02.swd.ss2022.game.commands.CommandRight;
+import at.compus02.swd.ss2022.game.commands.CommandUp;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
@@ -67,7 +71,19 @@ public class Main extends ApplicationAdapter {
     }
 
     private void act(float delta) {
-
+        if(gameInput.getKeyCode() == 19){ //keycode 19 -> Up
+            dora = new CommandUp(dora).execute();
+            gameInput.setKeyCode(0);
+        } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
+            dora = new CommandDown(dora).execute();
+            gameInput.setKeyCode(0);
+        } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
+            dora = new CommandLeft(dora).execute();
+            gameInput.setKeyCode(0);
+        } else if (gameInput.getKeyCode() == 22) { //keycode 22 -> Right
+            dora = new CommandRight(dora).execute();
+            gameInput.setKeyCode(0);
+        }
 
     }
 
