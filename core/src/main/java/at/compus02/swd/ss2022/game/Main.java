@@ -9,6 +9,10 @@ import at.compus02.swd.ss2022.game.commands.CommandUp;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
+import at.compus02.swd.ss2022.game.observer.ConsoleGameObserver;
+import at.compus02.swd.ss2022.game.observer.GameObservable;
+import at.compus02.swd.ss2022.game.observer.GameObserver;
+import at.compus02.swd.ss2022.game.observer.UIGameObserver;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -22,7 +26,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
  */
-public class Main extends ApplicationAdapter {
+public class Main extends ApplicationAdapter implements GameObservable {
 
 
     private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
@@ -30,6 +34,8 @@ public class Main extends ApplicationAdapter {
     Dora dora;
 
     private Array<GameObject> gameObjects = new Array<>();
+
+    private Array<GameObserver> observerList = new Array<>();
 
     SpriteBatch batchforground;
 
@@ -41,6 +47,12 @@ public class Main extends ApplicationAdapter {
     private final float logicFrameTime = 1 / updatesPerSecond;
     private float deltaAccumulator = 0;
     private BitmapFont font;
+    private static String UIText = "Hello Game";
+
+
+    public static void setUIText(String text){
+        UIText = text;
+    }
 
     @Override
     public void create() {
@@ -67,6 +79,10 @@ public class Main extends ApplicationAdapter {
         gameObjects.addAll(foregroundFactory.getForegroundObjects());
         gameObjects.add(dora);
 
+        ConsoleGameObserver consoleObserver = new ConsoleGameObserver();
+        UIGameObserver uiObserver = new UIGameObserver();
+        observerList.add(consoleObserver);
+        observerList.add(uiObserver);
 
     }
 
@@ -74,15 +90,27 @@ public class Main extends ApplicationAdapter {
         if(gameInput.getKeyCode() == 19){ //keycode 19 -> Up
             dora = new CommandUp(dora).execute();
             gameInput.setKeyCode(0);
+            for (GameObserver element : observerList) {
+                element.onPlayerMovedUp();
+            }
         } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
             dora = new CommandDown(dora).execute();
             gameInput.setKeyCode(0);
+            for (GameObserver element : observerList) {
+                element.onPlayerMovedDown();
+            }
         } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
             dora = new CommandLeft(dora).execute();
             gameInput.setKeyCode(0);
+            for (GameObserver element : observerList) {
+                element.onPlayerMovedLeft();
+            }
         } else if (gameInput.getKeyCode() == 22) { //keycode 22 -> Right
             dora = new CommandRight(dora).execute();
             gameInput.setKeyCode(0);
+            for (GameObserver element : observerList) {
+                element.onPlayerMovedRight();
+            }
         }
 
     }
@@ -95,9 +123,8 @@ public class Main extends ApplicationAdapter {
             gameObject.draw(batchforground);
         }
 
-        font.draw(batchforground, "Hello Game", -220, -220);
+        font.draw(batchforground, UIText, -220, -220);
         batchforground.end();
-
     }
 
     @Override
@@ -123,5 +150,10 @@ public class Main extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
+    }
+
+    @Override
+    public void registerObserver(GameObserver observer) {
+        this.observerList.add(observer);
     }
 }
