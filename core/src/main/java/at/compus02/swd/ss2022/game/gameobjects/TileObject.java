@@ -10,32 +10,10 @@ public class TileObject implements GameObject
     private Sprite sprite;
 
     public TileObject(int Type) {
-        switch (Type){
-            case 1:
-                image = new Texture("tile_gras.png");
-                sprite = new Sprite(image);
-            break;
-            case 2:
-                image = new Texture("tile_wall.png");
-                sprite = new Sprite(image);
-            break;
-            case 3:
-                image = new Texture("tile_gravel.png");
-                sprite = new Sprite(image);
-            break;
-            case 4:
-                image = new Texture("tile_water.png");
-                sprite = new Sprite(image);
-            break;
-            default:
-                Exception exception = new Exception("Dieses Tile gibt es nicht" + Type);
-                try {
-                    throw exception;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-        }
 
+        AssetRepository assetRepository = new AssetRepository();
+        image = assetRepository.getTexture(Type);
+        sprite = new Sprite(image);
 
     }
     @Override

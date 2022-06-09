@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.Factories;
 
+import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
 import at.compus02.swd.ss2022.game.gameobjects.*;
 import com.badlogic.gdx.utils.Array;
 
@@ -16,6 +17,7 @@ public class ForegroundFactory
         foregroundObjects.add(new InteractiveObject(2));
         foregroundObjects.add(new InteractiveObject(3));
         foregroundObjects.add(new InteractiveObject(4));
+
 
     }
 

@@ -8,6 +8,7 @@ import at.compus02.swd.ss2022.game.commands.CommandRight;
 import at.compus02.swd.ss2022.game.commands.CommandUp;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
+import at.compus02.swd.ss2022.game.gameobjects.SoundObject;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import at.compus02.swd.ss2022.game.observer.ConsoleGameObserver;
 import at.compus02.swd.ss2022.game.observer.GameObservable;
@@ -63,6 +64,9 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
         font = new BitmapFont();
         font.setColor(Color.WHITE);
+
+        SoundObject backgroundSound = new SoundObject("soundassets/263060__b-lamerichs__short-loops-04-02-2015-2b.mp3");
+        backgroundSound.start(0.2f);
 
        dora = new Dora();
 
