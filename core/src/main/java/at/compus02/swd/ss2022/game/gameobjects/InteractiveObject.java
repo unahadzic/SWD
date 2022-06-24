@@ -9,23 +9,28 @@ public class InteractiveObject implements GameObject
 
     private Texture image;
     private Sprite sprite;
+    private AssetRepository assetRepository = new AssetRepository();
 
     public InteractiveObject(int objectType){
         switch (objectType){
             case 1:
-                image = new Texture("bush.png");
+                image = assetRepository.getTexture(8);
                 sprite = new Sprite(image);
             break;
             case 2:
-                image = new Texture("log.png");
+                image = assetRepository.getTexture(7);
                 sprite = new Sprite(image);
             break;
             case 3:
-                image = new Texture("sign.png");
+                image = assetRepository.getTexture(6);
                 sprite = new Sprite(image);
             break;
             case 4:
-                image = new Texture("stone.png");
+                image = assetRepository.getTexture(5);
+                sprite = new Sprite(image);
+            break;
+            case 5:
+                image = assetRepository.getTexture(10);
                 sprite = new Sprite(image);
             break;
             default:
@@ -55,6 +60,16 @@ public class InteractiveObject implements GameObject
     {
         sprite.setSize(backgroundElement, backgroundElement);
         sprite.draw(batch);
+    }
+
+    @Override
+    public float getX() {
+        return sprite.getX();
+    }
+
+    @Override
+    public float getY() {
+        return sprite.getY();
     }
 
 }

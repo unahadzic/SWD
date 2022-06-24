@@ -16,6 +16,8 @@ public class AssetRepository {
     private Texture stone;
     private Texture dora;
 
+    private Texture enemy;
+
     public AssetRepository() {
     }
 
@@ -39,7 +41,7 @@ public class AssetRepository {
                 return createTextrue(stone,"stone.png");
 
             case 6:
-                return createTextrue(sign,"sgin.png");
+                return createTextrue(sign,"sign.png");
 
             case 7:
                 return createTextrue(log,"log.png");
@@ -50,6 +52,8 @@ public class AssetRepository {
             case 9:
                 return createTextrue(dora,"dora.png");
 
+            case 10:
+                return createTextrue(enemy,"Swiper.png");
 
             default:
                 Exception exception = new Exception("Dieses Tile gibt es nicht" + whichTexture);

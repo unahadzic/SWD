@@ -1,11 +1,9 @@
 package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
+import at.compus02.swd.ss2022.game.Factories.EnemyFactory;
 import at.compus02.swd.ss2022.game.Factories.ForegroundFactory;
-import at.compus02.swd.ss2022.game.commands.CommandDown;
-import at.compus02.swd.ss2022.game.commands.CommandLeft;
-import at.compus02.swd.ss2022.game.commands.CommandRight;
-import at.compus02.swd.ss2022.game.commands.CommandUp;
+import at.compus02.swd.ss2022.game.commands.*;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.gameobjects.SoundObject;
@@ -23,6 +21,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+
+import java.util.ArrayList;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -42,7 +42,9 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
     BackgroundFactory backgroundFactory;
     ForegroundFactory foregroundFactory;
+    EnemyFactory enemyFactory;
 
+    Array<GameObject> enemiesObject;
 
     private final float updatesPerSecond = 60;
     private final float logicFrameTime = 1 / updatesPerSecond;
@@ -61,6 +63,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
         batchforground = new SpriteBatch();
         backgroundFactory = new BackgroundFactory();
         foregroundFactory = new ForegroundFactory();
+        enemyFactory = new EnemyFactory();
 
         font = new BitmapFont();
         font.setColor(Color.WHITE);
@@ -72,6 +75,11 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
         Gdx.input.setInputProcessor(this.gameInput);
 
+        enemyFactory.createEnemies(2);
+        enemyFactory.placeForeground();
+        enemiesObject = enemyFactory.getEnemies();
+
+
         foregroundFactory.createForegroundObjects();
         foregroundFactory.placeForeground();
 
@@ -81,6 +89,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
         gameObjects.addAll(backgroundFactory.getGroundObjects());
         gameObjects.addAll(foregroundFactory.getForegroundObjects());
+        gameObjects.addAll(enemiesObject);
         gameObjects.add(dora);
 
         ConsoleGameObserver consoleObserver = new ConsoleGameObserver();
@@ -92,25 +101,28 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
     private void act(float delta) {
         if(gameInput.getKeyCode() == 19){ //keycode 19 -> Up
-            dora = new CommandUp(dora).execute();
+            new CommandUp(dora).execute();
             gameInput.setKeyCode(0);
+
             for (GameObserver element : observerList) {
                 element.onPlayerMovedUp();
             }
         } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
-            dora = new CommandDown(dora).execute();
+            new CommandDown(dora).execute();
+
             gameInput.setKeyCode(0);
             for (GameObserver element : observerList) {
                 element.onPlayerMovedDown();
             }
         } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
-            dora = new CommandLeft(dora).execute();
-            gameInput.setKeyCode(0);
+            new CommandLeft(dora).execute();
+
+            // gameInput.setKeyCode(0);
             for (GameObserver element : observerList) {
                 element.onPlayerMovedLeft();
             }
         } else if (gameInput.getKeyCode() == 22) { //keycode 22 -> Right
-            dora = new CommandRight(dora).execute();
+            new CommandRight(dora).execute();
             gameInput.setKeyCode(0);
             for (GameObserver element : observerList) {
                 element.onPlayerMovedRight();
@@ -142,6 +154,10 @@ public class Main extends ApplicationAdapter implements GameObservable {
             deltaAccumulator -= logicFrameTime;
             act(logicFrameTime);
         }
+       /* if (updatesPerSecond%30==0) {
+            EnemyMovement enemyMovement = new EnemyMovement();
+            enemyMovement.goToEnemy();
+        }*/
         draw();
     }
 
@@ -160,4 +176,11 @@ public class Main extends ApplicationAdapter implements GameObservable {
     public void registerObserver(GameObserver observer) {
         this.observerList.add(observer);
     }
+
+
+
+
 }
+
+
+

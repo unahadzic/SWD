@@ -35,4 +35,14 @@ public class TileObject implements GameObject
         sprite.setSize(foregroundElement, foregroundElement);
         sprite.draw(batch);
     }
+
+    @Override
+    public float getX() {
+        return sprite.getX();
+    }
+
+    @Override
+    public float getY() {
+        return getY();
+    }
 }

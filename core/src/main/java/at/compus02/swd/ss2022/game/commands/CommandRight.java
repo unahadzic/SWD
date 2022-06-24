@@ -1,12 +1,13 @@
 package at.compus02.swd.ss2022.game.commands;
 
 import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
+import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 
 public class CommandRight implements Command{
-    Dora dora;
-    public CommandRight(Dora dora) { this.dora = dora; }
+    GameObject dora;
+    public CommandRight(GameObject dora) { this.dora = dora; }
     @Override
-    public Dora execute() {
+    public GameObject execute() {
         if(dora.getX() < 180){
             dora.setPosition(dora.getX() + 60, dora.getY());
         }
