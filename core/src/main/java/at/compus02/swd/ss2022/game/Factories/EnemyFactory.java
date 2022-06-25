@@ -23,7 +23,7 @@ public class EnemyFactory {
     public void placeForeground()
     {
          for (GameObject enemy: enemies) {
-             enemy.setPosition(50,50);
+             enemy.setPosition(0,0);
 
         }
 

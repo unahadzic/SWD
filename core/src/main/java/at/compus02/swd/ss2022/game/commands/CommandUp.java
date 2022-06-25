@@ -11,7 +11,7 @@ public class CommandUp implements Command{
     @Override
     public GameObject execute() {
         if(dora.getY() < 180){
-            dora.setPosition(dora.getX(), dora.getY() + 60);
+            dora.setPosition(dora.getX(), dora.getY() +60);
         }
         return dora;
     }

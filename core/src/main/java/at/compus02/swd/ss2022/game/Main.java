@@ -157,6 +157,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
        if (updatesPerSecond%30==0) {
             EnemyMovement enemyMovement = new EnemyMovement();
             enemyMovement.goToEnemy(enemiesObject.get(0),dora);
+            enemyMovement.goFromEnemy(enemiesObject.get(1), dora);
         }
         draw();
     }
