@@ -4,8 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class TileObject implements GameObject
-{
+public class TileObject implements GameObject {
     private Texture image;
     private Sprite sprite;
 
@@ -16,12 +15,13 @@ public class TileObject implements GameObject
         sprite = new Sprite(image);
 
     }
+
     @Override
     public void act(float delta) {
 
     }
 
-    public void makeOrange(){
+    public void makeOrange() {
         sprite.setColor(1, 0.64f, 0, 1f);
     }
 
@@ -45,4 +45,10 @@ public class TileObject implements GameObject
     public float getY() {
         return getY();
     }
+
+    @Override
+    public void dispose() {
+
+    }
+
 }

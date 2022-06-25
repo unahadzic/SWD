@@ -10,6 +10,7 @@ public class InteractiveObject implements GameObject
     private Texture image;
     private Sprite sprite;
     private AssetRepository assetRepository = new AssetRepository();
+    private boolean doNotDraw;
 
     public InteractiveObject(int objectType){
         switch (objectType){
@@ -42,6 +43,8 @@ public class InteractiveObject implements GameObject
                 }
         }
 
+        sprite.setSize(backgroundElement, backgroundElement);
+
     }
 
     @Override
@@ -58,8 +61,10 @@ public class InteractiveObject implements GameObject
     @Override
     public void draw(SpriteBatch batch)
     {
-        sprite.setSize(backgroundElement, backgroundElement);
-        sprite.draw(batch);
+        if(sprite != null) {
+            sprite.draw(batch);
+        }
+
     }
 
     @Override
@@ -71,5 +76,13 @@ public class InteractiveObject implements GameObject
     public float getY() {
         return sprite.getY();
     }
+
+    @Override
+    public void dispose() {
+        image.dispose();
+        sprite.setSize(0,0);
+        sprite = null;
+    }
+
 
 }

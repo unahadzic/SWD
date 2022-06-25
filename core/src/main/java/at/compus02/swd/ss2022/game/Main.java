@@ -32,10 +32,10 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
     private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
     private GameInput gameInput = new GameInput();
+    private HitEnemy hitEnemy;
     Dora dora;
 
     private Array<GameObject> gameObjects = new Array<>();
-
     private Array<GameObserver> observerList = new Array<>();
 
     SpriteBatch batchforground;
@@ -127,8 +127,12 @@ public class Main extends ApplicationAdapter implements GameObservable {
             for (GameObserver element : observerList) {
                 element.onPlayerMovedRight();
             }
+        } else if(gameInput.getKeyCode() == 36)
+        {
+            hitEnemy = new HitEnemy(dora,enemiesObject);
+            hitEnemy.hitEnemy();
+            gameInput.setKeyCode(0);
         }
-
     }
 
     private void draw() {
