@@ -101,23 +101,23 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
     private void act(float delta) {
         if(gameInput.getKeyCode() == 19){ //keycode 19 -> Up
-            new CommandUp(dora).execute();
+           new CommandUp(dora).execute();
             gameInput.setKeyCode(0);
 
             for (GameObserver element : observerList) {
                 element.onPlayerMovedUp();
             }
         } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
-            new CommandDown(dora).execute();
-
+           new CommandDown(dora).execute();
             gameInput.setKeyCode(0);
+
             for (GameObserver element : observerList) {
                 element.onPlayerMovedDown();
             }
         } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
             new CommandLeft(dora).execute();
+            gameInput.setKeyCode(0);
 
-            // gameInput.setKeyCode(0);
             for (GameObserver element : observerList) {
                 element.onPlayerMovedLeft();
             }
@@ -154,10 +154,10 @@ public class Main extends ApplicationAdapter implements GameObservable {
             deltaAccumulator -= logicFrameTime;
             act(logicFrameTime);
         }
-       /* if (updatesPerSecond%30==0) {
+       if (updatesPerSecond%30==0) {
             EnemyMovement enemyMovement = new EnemyMovement();
-            enemyMovement.goToEnemy();
-        }*/
+            enemyMovement.goToEnemy(enemiesObject.get(0),dora);
+        }
         draw();
     }
 
