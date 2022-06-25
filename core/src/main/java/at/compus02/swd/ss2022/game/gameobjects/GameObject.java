@@ -10,5 +10,7 @@ public interface GameObject {
     void draw(SpriteBatch batch);
     float getX();
     float getY();
+    void dispose();
+
 
 }

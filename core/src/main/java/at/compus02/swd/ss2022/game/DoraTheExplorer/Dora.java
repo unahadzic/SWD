@@ -30,6 +30,12 @@ public class Dora implements GameObject
     }
 
     @Override
+    public void dispose() {
+
+    }
+
+
+    @Override
     public void setPosition(float x, float y) {
         sprite.setPosition(x, y);
     }
