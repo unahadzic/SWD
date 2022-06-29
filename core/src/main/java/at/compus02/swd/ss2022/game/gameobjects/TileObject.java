@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,7 +9,7 @@ public class TileObject implements GameObject {
     private Texture image;
     private Sprite sprite;
 
-    public TileObject(int Type) {
+    public TileObject(AssetFactoryEnum Type) {
 
         AssetRepository assetRepository = new AssetRepository();
         image = assetRepository.getTexture(Type);

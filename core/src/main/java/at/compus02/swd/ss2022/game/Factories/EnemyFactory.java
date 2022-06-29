@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.Factories;
 
+import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.InteractiveObject;
 import com.badlogic.gdx.utils.Array;
@@ -17,7 +18,7 @@ public class EnemyFactory {
 
         for(int i = 0;i < howMuchEnemies; i++)
         {
-            enemies.add(new InteractiveObject(5));
+            enemies.add(new InteractiveObject(AssetFactoryEnum.swiper));
         }
     }
     public void placeForeground()
