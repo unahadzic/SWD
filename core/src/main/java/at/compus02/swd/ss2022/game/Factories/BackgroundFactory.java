@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.Factories;
 
+import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.InteractiveObject;
 import at.compus02.swd.ss2022.game.gameobjects.TileObject;
@@ -26,10 +27,10 @@ public class BackgroundFactory {
         for (int i = 0; i < backgrounditems; i = i + differenttypes) {
 
 
-            groundObjects.add(new TileObject(1));
-            groundObjects.add(new TileObject(2));
-            groundObjects.add(new TileObject(3));
-            groundObjects.add(new TileObject(4));
+            groundObjects.add(new TileObject(AssetFactoryEnum.gras));
+            groundObjects.add(new TileObject(AssetFactoryEnum.gravel));
+            groundObjects.add(new TileObject(AssetFactoryEnum.wall));
+            groundObjects.add(new TileObject(AssetFactoryEnum.water));
         }
 
     }

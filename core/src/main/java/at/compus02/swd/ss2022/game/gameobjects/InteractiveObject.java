@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,26 +13,26 @@ public class InteractiveObject implements GameObject
     private AssetRepository assetRepository = new AssetRepository();
     private boolean doNotDraw;
 
-    public InteractiveObject(int objectType){
+    public InteractiveObject(AssetFactoryEnum objectType){
         switch (objectType){
-            case 1:
-                image = assetRepository.getTexture(8);
+            case stone:
+                image = assetRepository.getTexture(AssetFactoryEnum.stone);
                 sprite = new Sprite(image);
             break;
-            case 2:
-                image = assetRepository.getTexture(7);
+            case sign:
+                image = assetRepository.getTexture(AssetFactoryEnum.sign);
                 sprite = new Sprite(image);
             break;
-            case 3:
-                image = assetRepository.getTexture(6);
+            case bush:
+                image = assetRepository.getTexture(AssetFactoryEnum.bush);
                 sprite = new Sprite(image);
             break;
-            case 4:
-                image = assetRepository.getTexture(5);
+            case log:
+                image = assetRepository.getTexture(AssetFactoryEnum.log);
                 sprite = new Sprite(image);
             break;
-            case 5:
-                image = assetRepository.getTexture(10);
+            case swiper:
+                image = assetRepository.getTexture(AssetFactoryEnum.swiper);
                 sprite = new Sprite(image);
             break;
             default:

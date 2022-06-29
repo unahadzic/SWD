@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -23,36 +24,36 @@ public class AssetRepository {
 
 
 
-    public Texture getTexture(int whichTexture) {
+    public Texture getTexture(AssetFactoryEnum whichTexture) {
         switch (whichTexture) {
-            case 1:
+            case gras:
                 return createTextrue(grasImage,"tile_gras.png");
 
-            case 2:
+            case wall:
                 return createTextrue(wallImage,"tile_wall.png");
 
-            case 3:
+            case gravel:
                 return createTextrue(gravelTexture,"tile_gravel.png");
 
-            case 4:
+            case water:
                 return createTextrue(waterImage,"tile_water.png");
 
-            case 5:
+            case stone:
                 return createTextrue(stone,"stone.png");
 
-            case 6:
+            case sign:
                 return createTextrue(sign,"sign.png");
 
-            case 7:
+            case log:
                 return createTextrue(log,"log.png");
 
-            case 8:
+            case bush:
                 return createTextrue(bush, "bush.png");
 
-            case 9:
+            case dora:
                 return createTextrue(dora,"dora.png");
 
-            case 10:
+            case swiper:
                 return createTextrue(enemy,"Swiper.png");
 
             default:
