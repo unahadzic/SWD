@@ -18,21 +18,20 @@ public class HitEnemy implements Command {
         return null;
     }
 
-    public void hitEnemy()
+    public Array<GameObject> hitEnemy()
     {
         //System.out.println("Dora schlägt Swiper");
         for (int i = 0;i<enemies.size; i++) {
+            if ((enemies.get(i)==null))
+                break;
 
-            if((enemies.get(i).getX()-hittingObject.getX())<65 && (enemies.get(i).getY()-hittingObject.getY())<65)
-            {
+            if((enemies.get(i).getX()-hittingObject.getX())<65 && (enemies.get(i).getY()-hittingObject.getY())<65) {
                 System.out.println("Dora schlägt Swiper");
-                enemies.get(i).dispose();
-
-
+                enemies.removeIndex(i);
             }
 
         }
-
+        return enemies;
 
     }
 
