@@ -1,5 +1,9 @@
-package at.compus02.swd.ss2022.game.commands;
+package at.compus02.swd.ss2022.game.strategies;
 
+import at.compus02.swd.ss2022.game.commands.CommandDown;
+import at.compus02.swd.ss2022.game.commands.CommandLeft;
+import at.compus02.swd.ss2022.game.commands.CommandRight;
+import at.compus02.swd.ss2022.game.commands.CommandUp;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 
 public class EnemyMovement {

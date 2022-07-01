@@ -1,9 +1,11 @@
-package at.compus02.swd.ss2022.game.commands;
+package at.compus02.swd.ss2022.game.strategies;
 
+import at.compus02.swd.ss2022.game.commands.Command;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.utils.Array;
 
-public class HitEnemy implements Command {
+public class HitEnemy implements Command
+{
 
     Array<GameObject> enemies;
     GameObject hittingObject;

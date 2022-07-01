@@ -12,6 +12,8 @@ import at.compus02.swd.ss2022.game.observer.ConsoleGameObserver;
 import at.compus02.swd.ss2022.game.observer.GameObservable;
 import at.compus02.swd.ss2022.game.observer.GameObserver;
 import at.compus02.swd.ss2022.game.observer.UIGameObserver;
+import at.compus02.swd.ss2022.game.strategies.EnemyMovement;
+import at.compus02.swd.ss2022.game.strategies.HitEnemy;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

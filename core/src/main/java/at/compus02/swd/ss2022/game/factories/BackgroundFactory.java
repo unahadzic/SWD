@@ -10,7 +10,7 @@ public class BackgroundFactory {
     private Array<GameObject> groundObjects;
 
     int backgrounditems = 64; // Anzahl der items
-    int differenttypes = 4; // Hintergrund Elemente
+    int differenttypes = 2; // Hintergrund Elemente
     private float ycoordinate = -240;
     private float xcoordinate = -240;
     private int tilesamountx = 8;
@@ -24,12 +24,10 @@ public class BackgroundFactory {
 
 
         for (int i = 0; i < backgrounditems; i = i + differenttypes) {
-
-
             groundObjects.add(new TileObject(AssetFactoryEnum.gras));
             groundObjects.add(new TileObject(AssetFactoryEnum.gravel));
-            groundObjects.add(new TileObject(AssetFactoryEnum.wall));
-            groundObjects.add(new TileObject(AssetFactoryEnum.water));
+            //groundObjects.add(new TileObject(AssetFactoryEnum.wall));
+            //groundObjects.add(new TileObject(AssetFactoryEnum.water));
         }
 
     }
