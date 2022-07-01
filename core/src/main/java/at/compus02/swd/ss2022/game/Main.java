@@ -130,7 +130,9 @@ public class Main extends ApplicationAdapter implements GameObservable {
         } else if(gameInput.getKeyCode() == 36)
         {
             hitEnemy = new HitEnemy(dora,enemiesObject);
-            hitEnemy.hitEnemy();
+            enemiesObject = hitEnemy.hitEnemy();
+            gameObjects.removeIndex(2);
+            gameObjects.addAll(enemiesObject);
             gameInput.setKeyCode(0);
         }
     }
@@ -158,11 +160,11 @@ public class Main extends ApplicationAdapter implements GameObservable {
             deltaAccumulator -= logicFrameTime;
             act(logicFrameTime);
         }
-       if (updatesPerSecond%30==0) {
-            EnemyMovement enemyMovement = new EnemyMovement();
-            enemyMovement.goToEnemy(enemiesObject.get(0),dora);
-            enemyMovement.goFromEnemy(enemiesObject.get(1), dora);
-        }
+
+        EnemyMovement enemyMovement = new EnemyMovement();
+        gotoEnemy(enemyMovement);
+        goFromEnemy(enemyMovement);
+
         draw();
     }
 
@@ -182,7 +184,17 @@ public class Main extends ApplicationAdapter implements GameObservable {
         this.observerList.add(observer);
     }
 
+    public void gotoEnemy(EnemyMovement enemyMovement)
+    {
+        if(enemiesObject.get(0)!=null)
+            enemyMovement.goToEnemy(enemiesObject.get(0),dora);
+    }
 
+    public void goFromEnemy(EnemyMovement enemyMovement)
+    {
+        if(enemiesObject.get(1)!=null)
+            enemyMovement.goFromEnemy(enemiesObject.get(0),dora);
+    }
 
 
 }

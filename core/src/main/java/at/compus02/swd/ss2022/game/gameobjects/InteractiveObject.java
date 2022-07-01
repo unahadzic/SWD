@@ -70,11 +70,16 @@ public class InteractiveObject implements GameObject
 
     @Override
     public float getX() {
+        if (sprite == null)
+            return 0;
+
         return sprite.getX();
     }
 
     @Override
     public float getY() {
+        if(sprite == null)
+            return 0;
         return sprite.getY();
     }
 
