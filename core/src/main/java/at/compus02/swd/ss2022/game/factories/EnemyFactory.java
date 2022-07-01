@@ -1,11 +1,9 @@
-package at.compus02.swd.ss2022.game.Factories;
+package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
+import at.compus02.swd.ss2022.game.enums.AssetFactoryEnum;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.InteractiveObject;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.ArrayList;
 
 public class EnemyFactory {
 

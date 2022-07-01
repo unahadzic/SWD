@@ -1,11 +1,11 @@
 package at.compus02.swd.ss2022.game;
 
-import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
-import at.compus02.swd.ss2022.game.Factories.EnemyFactory;
-import at.compus02.swd.ss2022.game.Factories.ForegroundFactory;
+import at.compus02.swd.ss2022.game.doraTheExplorer.Dora;
+import at.compus02.swd.ss2022.game.factories.EnemyFactory;
+import at.compus02.swd.ss2022.game.factories.ForegroundFactory;
 import at.compus02.swd.ss2022.game.commands.*;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.Factories.BackgroundFactory;
+import at.compus02.swd.ss2022.game.factories.BackgroundFactory;
 import at.compus02.swd.ss2022.game.gameobjects.SoundObject;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import at.compus02.swd.ss2022.game.observer.ConsoleGameObserver;
@@ -14,15 +14,12 @@ import at.compus02.swd.ss2022.game.observer.GameObserver;
 import at.compus02.swd.ss2022.game.observer.UIGameObserver;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-
-import java.util.ArrayList;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -45,6 +42,8 @@ public class Main extends ApplicationAdapter implements GameObservable {
     EnemyFactory enemyFactory;
 
     Array<GameObject> enemiesObject;
+
+    EnemyMovement enemyMovement = new EnemyMovement();
 
     private final float updatesPerSecond = 60;
     private final float logicFrameTime = 1 / updatesPerSecond;
@@ -107,6 +106,9 @@ public class Main extends ApplicationAdapter implements GameObservable {
             for (GameObserver element : observerList) {
                 element.onPlayerMovedUp();
             }
+
+            goToEnemy(enemyMovement);
+            goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
            new CommandDown(dora).execute();
             gameInput.setKeyCode(0);
@@ -114,6 +116,9 @@ public class Main extends ApplicationAdapter implements GameObservable {
             for (GameObserver element : observerList) {
                 element.onPlayerMovedDown();
             }
+
+            goToEnemy(enemyMovement);
+            goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
             new CommandLeft(dora).execute();
             gameInput.setKeyCode(0);
@@ -121,12 +126,18 @@ public class Main extends ApplicationAdapter implements GameObservable {
             for (GameObserver element : observerList) {
                 element.onPlayerMovedLeft();
             }
+
+            goToEnemy(enemyMovement);
+            goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 22) { //keycode 22 -> Right
             new CommandRight(dora).execute();
             gameInput.setKeyCode(0);
             for (GameObserver element : observerList) {
                 element.onPlayerMovedRight();
             }
+
+            goToEnemy(enemyMovement);
+            goFromEnemy(enemyMovement);
         } else if(gameInput.getKeyCode() == 36)
         {
             hitEnemy = new HitEnemy(dora,enemiesObject);
@@ -161,9 +172,6 @@ public class Main extends ApplicationAdapter implements GameObservable {
             act(logicFrameTime);
         }
 
-        EnemyMovement enemyMovement = new EnemyMovement();
-        gotoEnemy(enemyMovement);
-        goFromEnemy(enemyMovement);
 
         draw();
     }
@@ -184,7 +192,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
         this.observerList.add(observer);
     }
 
-    public void gotoEnemy(EnemyMovement enemyMovement)
+    public void goToEnemy(EnemyMovement enemyMovement)
     {
         if(enemiesObject.get(0)!=null)
             enemyMovement.goToEnemy(enemiesObject.get(0),dora);
@@ -193,7 +201,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
     public void goFromEnemy(EnemyMovement enemyMovement)
     {
         if(enemiesObject.get(1)!=null)
-            enemyMovement.goFromEnemy(enemiesObject.get(0),dora);
+            enemyMovement.goFromEnemy(enemiesObject.get(1),dora);
     }
 
 

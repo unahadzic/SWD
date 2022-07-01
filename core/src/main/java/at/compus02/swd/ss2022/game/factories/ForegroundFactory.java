@@ -1,7 +1,6 @@
-package at.compus02.swd.ss2022.game.Factories;
+package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.DoraTheExplorer.Dora;
-import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
+import at.compus02.swd.ss2022.game.enums.AssetFactoryEnum;
 import at.compus02.swd.ss2022.game.gameobjects.*;
 import com.badlogic.gdx.utils.Array;
 

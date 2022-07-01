@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.DoraTheExplorer;
+package at.compus02.swd.ss2022.game.doraTheExplorer;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;

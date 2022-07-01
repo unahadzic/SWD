@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.Enums;
+package at.compus02.swd.ss2022.game.enums;
 
 public enum AssetFactoryEnum {
 

@@ -1,6 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
-import at.compus02.swd.ss2022.game.Enums.AssetFactoryEnum;
+import at.compus02.swd.ss2022.game.enums.AssetFactoryEnum;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
