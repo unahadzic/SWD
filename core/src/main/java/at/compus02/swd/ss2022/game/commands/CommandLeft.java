@@ -10,6 +10,8 @@ public class CommandLeft implements Command{
     public GameObject execute() {
         if(dora.getX() > -240){
             dora.setPosition(dora.getX() - 60, dora.getY());
+        } else {
+            return null;
         }
         return dora;
     }

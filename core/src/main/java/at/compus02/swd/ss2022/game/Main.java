@@ -54,7 +54,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
     private static String UIText = "Hello Game";
 
 
-    public static void setUIText(String text){
+    public static void setUIText(String text) {
         UIText = text;
     }
 
@@ -72,7 +72,8 @@ public class Main extends ApplicationAdapter implements GameObservable {
         SoundObject backgroundSound = new SoundObject("soundassets/263060__b-lamerichs__short-loops-04-02-2015-2b.mp3");
         backgroundSound.start(0.2f);
 
-       dora = new Dora();
+        dora = new Dora();
+        dora.setPosition(-120,120);
 
         Gdx.input.setInputProcessor(this.gameInput);
 
@@ -101,48 +102,64 @@ public class Main extends ApplicationAdapter implements GameObservable {
     }
 
     private void act(float delta) {
-        if(gameInput.getKeyCode() == 19){ //keycode 19 -> Up
-           new CommandUp(dora).execute();
-            gameInput.setKeyCode(0);
-
-            for (GameObserver element : observerList) {
-                element.onPlayerMovedUp();
+        if (gameInput.getKeyCode() == 19) { //keycode 19 -> Up
+            if(new CommandUp(dora).execute() != null){
+                for (GameObserver element : observerList) {
+                    element.onPlayerMovedUp();
+                }
+            }else {
+                for (GameObserver element : observerList) {
+                    element.onPlayerHitWall();
+                }
             }
+            gameInput.setKeyCode(0);
 
             goToEnemy(enemyMovement);
             goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 20) { //keycode 20 -> Down
-           new CommandDown(dora).execute();
-            gameInput.setKeyCode(0);
-
-            for (GameObserver element : observerList) {
-                element.onPlayerMovedDown();
+            if(new CommandDown(dora).execute() != null) {
+                for (GameObserver element : observerList) {
+                    element.onPlayerMovedDown();
+                }
+            } else {
+                for (GameObserver element : observerList) {
+                    element.onPlayerHitWall();
+                }
             }
+            gameInput.setKeyCode(0);
 
             goToEnemy(enemyMovement);
             goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 21) { //keycode 21 -> Left
-            new CommandLeft(dora).execute();
-            gameInput.setKeyCode(0);
-
-            for (GameObserver element : observerList) {
-                element.onPlayerMovedLeft();
+            if(new CommandLeft(dora).execute() != null) {
+                for (GameObserver element : observerList) {
+                    element.onPlayerMovedLeft();
+                }
+            } else {
+                for (GameObserver element : observerList) {
+                    element.onPlayerHitWall();
+                }
             }
+            gameInput.setKeyCode(0);
 
             goToEnemy(enemyMovement);
             goFromEnemy(enemyMovement);
         } else if (gameInput.getKeyCode() == 22) { //keycode 22 -> Right
-            new CommandRight(dora).execute();
-            gameInput.setKeyCode(0);
-            for (GameObserver element : observerList) {
-                element.onPlayerMovedRight();
+            if(new CommandRight(dora).execute() != null) {
+                for (GameObserver element : observerList) {
+                    element.onPlayerMovedRight();
+                }
+            } else {
+                for (GameObserver element : observerList) {
+                    element.onPlayerHitWall();
+                }
             }
+            gameInput.setKeyCode(0);
 
             goToEnemy(enemyMovement);
             goFromEnemy(enemyMovement);
-        } else if(gameInput.getKeyCode() == 36)
-        {
-            hitEnemy = new HitEnemy(dora,enemiesObject);
+        } else if (gameInput.getKeyCode() == 36) {
+            hitEnemy = new HitEnemy(dora, enemiesObject);
             enemiesObject = hitEnemy.hitEnemy();
             gameObjects.removeIndex(2);
             gameObjects.addAll(enemiesObject);
@@ -194,16 +211,14 @@ public class Main extends ApplicationAdapter implements GameObservable {
         this.observerList.add(observer);
     }
 
-    public void goToEnemy(EnemyMovement enemyMovement)
-    {
-        if(enemiesObject.get(0)!=null)
-            enemyMovement.goToEnemy(enemiesObject.get(0),dora);
+    public void goToEnemy(EnemyMovement enemyMovement) {
+        if (enemiesObject.get(0) != null)
+            enemyMovement.goToEnemy(enemiesObject.get(0), dora);
     }
 
-    public void goFromEnemy(EnemyMovement enemyMovement)
-    {
-        if(enemiesObject.get(1)!=null)
-            enemyMovement.goFromEnemy(enemiesObject.get(1),dora);
+    public void goFromEnemy(EnemyMovement enemyMovement) {
+        if (enemiesObject.get(1) != null)
+            enemyMovement.goFromEnemy(enemiesObject.get(1), dora);
     }
 
 

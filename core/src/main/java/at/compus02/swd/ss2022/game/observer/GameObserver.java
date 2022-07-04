@@ -5,4 +5,5 @@ public interface GameObserver {
     public void onPlayerMovedDown();
     public void onPlayerMovedLeft();
     public void onPlayerMovedRight();
+    public void onPlayerHitWall();
 }

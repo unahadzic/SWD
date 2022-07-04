@@ -22,4 +22,7 @@ public class UIGameObserver implements GameObserver{
     public void onPlayerMovedRight() {
         Main.setUIText("Dora moved right!");
     }
+
+    @Override
+    public void onPlayerHitWall() { Main.setUIText("Dora hits a wall!"); }
 }

@@ -11,6 +11,8 @@ public class CommandUp implements Command{
     public GameObject execute() {
         if(dora.getY() < 180){
             dora.setPosition(dora.getX(), dora.getY() +60);
+        } else {
+            return null;
         }
         return dora;
     }

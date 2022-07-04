@@ -20,4 +20,8 @@ public class ConsoleGameObserver implements GameObserver{
     public void onPlayerMovedRight() {
         System.out.println("Dora moved right!");
     }
+
+    public void onPlayerHitWall() {
+        System.out.println("Dora hits a wall!");
+    }
 }
