@@ -87,7 +87,6 @@ public class InteractiveObject implements GameObject
     public void dispose() {
         image.dispose();
         sprite.setSize(0,0);
-        sprite = null;
     }
 
 

@@ -9,6 +9,7 @@ public class HitEnemy implements Command
 
     Array<GameObject> enemies;
     GameObject hittingObject;
+    Array<GameObject> enemiesWithoutHited;
 
     public HitEnemy(GameObject gameObject, Array<GameObject> enemies) {
         this.hittingObject = gameObject;
@@ -28,8 +29,11 @@ public class HitEnemy implements Command
                 break;
 
             if((enemies.get(i).getX()-hittingObject.getX())<65 && (enemies.get(i).getY()-hittingObject.getY())<65) {
-                System.out.println("Dora schlägt Swiper");
-                enemies.removeIndex(i);
+
+                enemiesWithoutHited = new Array<>();
+                enemiesWithoutHited.add(enemies.get(i));
+
+                return enemiesWithoutHited;
             }
 
         }

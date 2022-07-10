@@ -144,8 +144,11 @@ public class Main extends ApplicationAdapter implements GameObservable {
         {
             hitEnemy = new HitEnemy(dora,enemiesObject);
             enemiesObject = hitEnemy.hitEnemy();
-            gameObjects.removeIndex(2);
-            gameObjects.addAll(enemiesObject);
+            for (GameObject enemy: enemiesObject) {
+
+                gameObjects.removeIndex(gameObjects.indexOf(enemy,true));
+
+            }
             gameInput.setKeyCode(0);
         }
     }
