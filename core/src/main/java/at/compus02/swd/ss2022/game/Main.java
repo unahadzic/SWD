@@ -161,8 +161,11 @@ public class Main extends ApplicationAdapter implements GameObservable {
         } else if (gameInput.getKeyCode() == 36) {
             hitEnemy = new HitEnemy(dora, enemiesObject);
             enemiesObject = hitEnemy.hitEnemy();
-            gameObjects.removeIndex(2);
-            gameObjects.addAll(enemiesObject);
+            for (GameObject enemy: enemiesObject) {
+
+                gameObjects.removeIndex(gameObjects.indexOf(enemy,true));
+
+            }
             gameInput.setKeyCode(0);
         }
     }
