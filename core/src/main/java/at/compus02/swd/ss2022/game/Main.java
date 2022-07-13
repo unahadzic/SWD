@@ -13,7 +13,7 @@ import at.compus02.swd.ss2022.game.observer.GameObservable;
 import at.compus02.swd.ss2022.game.observer.GameObserver;
 import at.compus02.swd.ss2022.game.observer.UIGameObserver;
 import at.compus02.swd.ss2022.game.strategies.EnemyMovement;
-import at.compus02.swd.ss2022.game.strategies.HitEnemy;
+import at.compus02.swd.ss2022.game.commands.HitEnemy;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -31,7 +31,6 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
     private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
     private GameInput gameInput = new GameInput();
-    private HitEnemy hitEnemy;
     Dora dora;
 
     private Array<GameObject> gameObjects = new Array<>();
@@ -77,7 +76,7 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
         Gdx.input.setInputProcessor(this.gameInput);
 
-        enemyFactory.createEnemies(2);
+        enemyFactory.createEnemies(4);
         enemyFactory.placeForeground();
         enemiesObject = enemyFactory.getEnemies();
 
@@ -158,13 +157,12 @@ public class Main extends ApplicationAdapter implements GameObservable {
 
             goToEnemy(enemyMovement);
             goFromEnemy(enemyMovement);
-        } else if (gameInput.getKeyCode() == 36) {
-            hitEnemy = new HitEnemy(dora, enemiesObject);
-            enemiesObject = hitEnemy.hitEnemy();
-            for (GameObject enemy: enemiesObject) {
-
+        } else if (gameInput.getKeyCode() == 36) { //keycode for h -> hit
+            Array<GameObject> deadEnemies;
+            deadEnemies = new HitEnemy(dora, enemiesObject).execute();
+            for (GameObject enemy: deadEnemies) {
                 gameObjects.removeIndex(gameObjects.indexOf(enemy,true));
-
+                enemiesObject.removeIndex(enemiesObject.indexOf(enemy, true));
             }
             gameInput.setKeyCode(0);
         }
@@ -194,7 +192,6 @@ public class Main extends ApplicationAdapter implements GameObservable {
             act(logicFrameTime);
         }
 
-
         draw();
     }
 
@@ -215,13 +212,15 @@ public class Main extends ApplicationAdapter implements GameObservable {
     }
 
     public void goToEnemy(EnemyMovement enemyMovement) {
-        if (enemiesObject.get(0) != null)
-            enemyMovement.goToEnemy(enemiesObject.get(0), dora);
+        for (int i = 0; i < enemiesObject.size; i = i + 2) {
+            enemyMovement.goToEnemy(enemiesObject.get(i), dora);
+        }
     }
 
     public void goFromEnemy(EnemyMovement enemyMovement) {
-        if (enemiesObject.get(1) != null)
-            enemyMovement.goFromEnemy(enemiesObject.get(1), dora);
+        for (int i = 1; i < enemiesObject.size; i = i + 2) {
+            enemyMovement.goFromEnemy(enemiesObject.get(i), dora);
+        }
     }
 
 

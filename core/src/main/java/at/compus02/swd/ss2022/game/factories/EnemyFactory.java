@@ -6,13 +6,11 @@ import at.compus02.swd.ss2022.game.gameobjects.InteractiveObject;
 import com.badlogic.gdx.utils.Array;
 
 public class EnemyFactory {
-
     private Array<GameObject> enemies;
-
 
     public void createEnemies(int howMuchEnemies)
     {
-        enemies = new Array<GameObject>();
+        enemies = new Array<>();
 
         for(int i = 0;i < howMuchEnemies; i++)
         {
@@ -21,21 +19,19 @@ public class EnemyFactory {
     }
     public void placeForeground()
     {
+        int min = -4;
+        int max = 3;
          for (GameObject enemy: enemies) {
-             enemy.setPosition(0,0);
-
+             int xPos = (int)(Math.random()*(max-min+1)+min);
+             int yPos = (int)(Math.random()*(max-min+1)+min);
+             xPos *= 60;
+             yPos *= 60;
+             enemy.setPosition(xPos,yPos);
         }
-
     }
 
     public Array<GameObject> getEnemies ()
     {
-
         return enemies;
     }
-
-
-
-
-
 }
