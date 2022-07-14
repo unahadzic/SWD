@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.commands;
+package at.compus02.swd.ss2022.game.strategies;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.utils.Array;
 

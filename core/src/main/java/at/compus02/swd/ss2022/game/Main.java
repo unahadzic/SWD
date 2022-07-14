@@ -13,7 +13,7 @@ import at.compus02.swd.ss2022.game.observer.GameObservable;
 import at.compus02.swd.ss2022.game.observer.GameObserver;
 import at.compus02.swd.ss2022.game.observer.UIGameObserver;
 import at.compus02.swd.ss2022.game.strategies.EnemyMovement;
-import at.compus02.swd.ss2022.game.commands.HitEnemy;
+import at.compus02.swd.ss2022.game.strategies.HitEnemy;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -212,14 +212,17 @@ public class Main extends ApplicationAdapter implements GameObservable {
     }
 
     public void goToEnemy(EnemyMovement enemyMovement) {
-        for (int i = 0; i < enemiesObject.size; i = i + 2) {
+        for (int i = 0; i < enemiesObject.size; i = i + 3) {
             enemyMovement.goToEnemy(enemiesObject.get(i), dora);
         }
     }
 
     public void goFromEnemy(EnemyMovement enemyMovement) {
-        for (int i = 1; i < enemiesObject.size; i = i + 2) {
+        for (int i = 1; i < enemiesObject.size; i = i + 3) {
             enemyMovement.goFromEnemy(enemiesObject.get(i), dora);
+        }
+        for (int i = 2; i < enemiesObject.size; i = i + 3) {
+            enemyMovement.goFromEnemy2(enemiesObject.get(i), dora);
         }
     }
 
